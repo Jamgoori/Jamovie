@@ -1,9 +1,10 @@
 import {Navbar, Container, Form, Button, Nav,NavDropdown,FormControl} from "react-bootstrap"
+import {Link} from "react-router-dom"
 function TopNav() {
   return (
     <Navbar bg="dark" variant = "dark" expand="lg">
       <Container fluid>
-        <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+        <Link to="/" className="nav-head">Jamovie</Link>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -11,21 +12,8 @@ function TopNav() {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#action1">Home</Nav.Link>
-            <Nav.Link href="#action2">Link</Nav.Link>
-            <NavDropdown title="Link" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Something else here
-              </NavDropdown.Item>
-            </NavDropdown>
-            <Nav.Link href="#" disabled>
-              Link
-            </Nav.Link>
+            <Link to="/" className="nav-item">Home</Link>
+            <Link to="/movies" className="nav-item">Movies</Link>
           </Nav>
           <Form className="d-flex">
             <Form.Control
@@ -34,7 +22,7 @@ function TopNav() {
               className="me-2"
               aria-label="Search"
             />
-            <Button variant="outline-success">Search</Button>
+            <Button variant="danger">Search</Button>
           </Form>
         </Navbar.Collapse>
       </Container>
