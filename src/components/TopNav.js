@@ -4,7 +4,7 @@ function TopNav() {
   return (
     <Navbar bg="dark" variant = "dark" expand="lg">
       <Container fluid>
-        <Link to="/" className="nav-head">Jamovie</Link>
+        <Link to="/" className="nav-head">JAMOVIE</Link>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
