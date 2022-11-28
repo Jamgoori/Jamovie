@@ -1,22 +1,25 @@
-import React from 'react'
+import React from "react";
 
-const Banner = ({movie}) => {
-    console.log("MOVIE", movie)
+const Banner = ({ movie }) => {
+  console.log("MOVIE", movie);
   return (
     <>
-    <div className="banner"
-    style={{backgroundImage:"url("+`https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${movie.poster_path}`+")",
-}}>
-  <div className="bannerText">
-    <h1>{movie.title}</h1>
-    <p>{movie.overview}</p>
-  </div>
+      <div
+        className="banner"
+        style={{
+          backgroundImage:
+            "url(" +
+            `https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${movie.poster_path}` +
+            ")",
+        }}
+      >
+        <div className="bannerText">
+          <h1>{movie.title}</h1>
+          <p>{movie.overview}</p>
+        </div>
+      </div>
+    </>
+  );
+};
 
-</div>
-
-
-</>
-  )
-}
-
-export default Banner
+export default Banner;
