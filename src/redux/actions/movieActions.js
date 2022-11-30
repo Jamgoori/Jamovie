@@ -7,7 +7,7 @@ function getMovies(){
     return async (dispatch)=>{
         try{
             // dispatch({type:"GET_MOVIES_REQUEST"})
-            dispatch(movieAction.getMovieRequest())
+            dispatch(movieAction.getMovieRequest({loading: true}))
             const popularMovieApi = api.get(`movie/popular?api_key=${API_KEY}&language=en-US&page=1`)
             const topRateApi = api.get(`movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`)
             const upComingApi = api.get(`movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`)
@@ -21,11 +21,11 @@ function getMovies(){
         //          genreList: genreList.data.genres,
         //          loading: false,
         //         }
-            dispatch(movieAction.getMovieSuccess({popularMovies, topRatedMovies, upcomingMovies, genreList}))
+            dispatch(movieAction.getMovieSuccess({popularMovies:popularMovies.data, topRatedMovies:topRatedMovies.data, upcomingMovies:upcomingMovies.data, genreList:genreList.data.genres, loading: false}))
            }
          catch(error){
             // dispatch({type: "GET_MOVIES_FAIL"})
-            dispatch(movieAction.getMoviesFail())
+            dispatch(movieAction.getMoviesFail({loading: false}))
         }
 }}
 
