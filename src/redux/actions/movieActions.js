@@ -1,9 +1,9 @@
 import api from "../api";
 import { movieAction } from "../reducers/movieReducer";
-
+// import { useParams } from "react-router-dom";
 const API_KEY = process.env.REACT_APP_API_KEY;
 
-function getMovies() {
+function getMovies(item) {
   return async (dispatch) => {
     try {
       dispatch(movieAction.getMovieRequest({ loading: true }));
@@ -19,8 +19,9 @@ function getMovies() {
       const genreApi = api.get(
         `/genre/movie/list?api_key=${API_KEY}&language=en-US`
       );
+
       let [popularMovies, topRatedMovies, upcomingMovies, genreList] =
-        await Promise.all([popularMovieApi, topRateApi, upComingApi, genreApi]);
+        await Promise.all([popularMovieApi, topRateApi, upComingApi, genreApi, ]);
 
       dispatch(
         movieAction.getMovieSuccess({

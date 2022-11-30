@@ -2,11 +2,10 @@ import React from "react";
 import { Badge } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
 const MovieCard = ({ item }) => {
   const navigate = useNavigate();
   const onClickImg = () => {
-    navigate(`/movies/:id`)
+    navigate(`/movies/${item.id}`)
   }
   const{genreList} = useSelector(state=>state.movie)
   return (
