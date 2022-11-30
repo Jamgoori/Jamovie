@@ -6,7 +6,6 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 function getMovies() {
   return async (dispatch) => {
     try {
-      // dispatch({type:"GET_MOVIES_REQUEST"})
       dispatch(movieAction.getMovieRequest({ loading: true }));
       const popularMovieApi = api.get(
         `movie/popular?api_key=${API_KEY}&language=en-US&page=1`
@@ -22,14 +21,7 @@ function getMovies() {
       );
       let [popularMovies, topRatedMovies, upcomingMovies, genreList] =
         await Promise.all([popularMovieApi, topRateApi, upComingApi, genreApi]);
-      //    dispatch({
-      //     type: "GET_MOVIES_SUCCESS",
-      //     payload: {popularMovies:popularMovies.data,
-      //         topRatedMovies: topRatedMovies.data,
-      //          upcomingMovies: upcomingMovies.data,
-      //          genreList: genreList.data.genres,
-      //          loading: false,
-      //         }
+
       dispatch(
         movieAction.getMovieSuccess({
           popularMovies: popularMovies.data,
@@ -40,7 +32,6 @@ function getMovies() {
         })
       );
     } catch (error) {
-      // dispatch({type: "GET_MOVIES_FAIL"})
       dispatch(movieAction.getMoviesFail({ loading: false }));
     }
   };
