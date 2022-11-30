@@ -20,8 +20,10 @@ const MovieCard = ({ item }) => {
             ")",
         }} onClick={onClickImg}
       >
-        <div className="overLay">
-          <h2>{item.title}</h2>
+
+      </div>
+      <div className="overLay">
+          <h3>{item.title}</h3>
           <div>
             {item.genre_ids.map((id) => (
               <Badge bg="warning" text="dark">
@@ -30,11 +32,9 @@ const MovieCard = ({ item }) => {
             ))}
           </div>
           <div>
-            <span>{item.vote_average}</span>
-            <span>{item.adult?"청불":"전체 이용가"}</span>
+            <span>★ {item.vote_average}</span>
           </div>
         </div>
-      </div>
     </>
   );
 };

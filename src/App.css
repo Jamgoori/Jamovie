@@ -1,3 +1,7 @@
+.body{
+  background-color: black;
+  color: white;
+}
 .nav-head{
   color: rgb(255, 211, 211);
   font-size: 2rem;
@@ -38,19 +42,16 @@
 
 .card22{
   width: 300px;
-  height: 200px;
+  height: 200px !important;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .overLay{
-  opacity: 0;
+
 }
 
-.card22:hover .overLay{
-  opacity: 1;
-  cursor: pointer;
-}
