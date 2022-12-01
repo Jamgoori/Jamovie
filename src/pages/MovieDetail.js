@@ -8,16 +8,16 @@ const MovieDetail = () => {
   const {id} = useParams();
 
   const {
-    movieDetail
+    movieDetail2
   } = useSelector((state) => state.detail);
 
   useEffect(() => {
     dispatch(movieDetailAction.getMovieDetail({id}));
-  }, []);
-  
+  }, [],console.log("Effect완료"),
+  console.log("테스트",movieDetail2));
   return (
   <>
-   <div> {movieDetail.title} 안녕
+   <div> {movieDetail2.title} 안녕
 
    </div>
   </>

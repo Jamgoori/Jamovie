@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 let initialState = {
-    movieDetail: {},
+    movieDetail2: [],
     loading: true,
 };
 
@@ -13,7 +13,7 @@ const detailSlice = createSlice({
             state.loading = action.true
         },
         getMovieDetailSuccess(state,action){
-            state.movieDetail = action.payload.movieDetail;
+            state.movieDetail2 = action.payload.movieDetail2;
             state.loading = action.false;
         },
         getMovieDetailFail(state,action){

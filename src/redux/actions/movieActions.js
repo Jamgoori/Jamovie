@@ -1,6 +1,5 @@
 import api from "../api";
 import { movieAction } from "../reducers/movieReducer";
-// import { useParams } from "react-router-dom";
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 function getMovies() {
