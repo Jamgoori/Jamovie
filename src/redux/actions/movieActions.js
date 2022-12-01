@@ -3,7 +3,7 @@ import { movieAction } from "../reducers/movieReducer";
 // import { useParams } from "react-router-dom";
 const API_KEY = process.env.REACT_APP_API_KEY;
 
-function getMovies(item) {
+function getMovies() {
   return async (dispatch) => {
     try {
       dispatch(movieAction.getMovieRequest({ loading: true }));
@@ -31,13 +31,15 @@ function getMovies(item) {
           genreList: genreList.data.genres,
           loading: false,
         })
+        
       );
+      
+console.log("냐옹",popularMovies);
     } catch (error) {
       dispatch(movieAction.getMoviesFail({ loading: false }));
     }
   };
 }
-
 export const movieActions = {
   getMovies,
 };

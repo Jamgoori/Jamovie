@@ -1,30 +1,27 @@
-// import React, { useEffect } from "react";
-// import { useParams } from "react-router-dom";
-// import { movieDetailAction } from "../redux/actions/movieDetailAction";
-// import { useDispatch, useSelector } from "react-redux";
-// import ClipLoader from "react-spinners/ClipLoader";
+import React, { useEffect } from "react";
+import { movieDetailAction } from "../redux/actions/movieDetailAction";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
-// const MovieDetail = () => {
-//   const dispatch = useDispatch();
-//   const movie_id = useParams().id;
-//   const {
-//     MovieDetailData,
-//     MovieReviews,
-//     RecommendMovies,
-//     SimilarMovies,
-//     loading,
-//     MovieCredits,
-//   } = useSelector((state) => state.movie);
+const MovieDetail = () => {
+  const dispatch = useDispatch();
+  const {id} = useParams();
 
-//   useEffect(() => {
-//     dispatch(movieDetailAction.getMovieDetail(movie_id, 1));
-//   }, []);
+  const {
+    movieDetail
+  } = useSelector((state) => state.detail);
+
+  useEffect(() => {
+    dispatch(movieDetailAction.getMovieDetail({id}));
+  }, []);
   
-//   if (loading) {
-//     return <ClipLoader color="red" loading={loading} size={150} />;
-//   }
+  return (
+  <>
+   <div> {movieDetail.title} 안녕
 
-//   return <div>MovieDetail</div>;
-// };
+   </div>
+  </>
+  )
+};
 
-// export default MovieDetail;
+export default MovieDetail;

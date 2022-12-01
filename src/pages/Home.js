@@ -9,6 +9,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const { popularMovies, topRatedMovies, upcomingMovies, loading } =
     useSelector((state) => state.movie);
+
   useEffect(() => {
     dispatch(movieActions.getMovies());
   }, []);
@@ -19,7 +20,6 @@ const Home = () => {
   return (
     <div>
       {popularMovies.results && <Banner movie={popularMovies.results[0]} />}
-
       <h1>Popular Movie</h1>
       <MovieSlide movie={popularMovies} />
       <h1>TopRated Movie</h1>
