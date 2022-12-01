@@ -2,40 +2,40 @@ import api from '../api';
 import{movieDetail} from '../reducers/movieDetailReducer';
 const API_KEY = process.env.REACT_APP_API_KEY;
 
-function getMovieDetail(movie_id, pageNum){
+function getMovieDetail(id, pageNum){
     return async (dispatch) =>{
         try {
-            const getMovieDetailJson = api.get(
-                `/movie/${movie_id}?api_key=${API_KEY}&language=en-US&region=US`
+            const getMovieDetail = api.get(
+                `/movie/${id}?api_key=${API_KEY}&language=en-US&region=US`
             );
             const getMovieVideos = api.get(
-                `/movie/${movie_id}/videos?api_key=${API_KEY}&language=en-US&region=US`
+                `/movie/${id}/videos?api_key=${API_KEY}&language=en-US&region=US`
               );
         
               const getMovieReviews = api.get(
-                `/movie/${movie_id}/reviews?api_key=${API_KEY}&language=en-US&page=${pageNum}&region=US`
+                `/movie/${id}/reviews?api_key=${API_KEY}&language=en-US&page=${pageNum}&region=US`
               );
         
               const getRecommendMovies = api.get(
-                `/movie/${movie_id}/recommendations?api_key=${API_KEY}&language=en-US&page=${pageNum}&region=US`
+                `/movie/${id}/recommendations?api_key=${API_KEY}&language=en-US&page=${pageNum}&region=US`
               );
         
               const getSimilarMovies = api.get(
-                `/movie/${movie_id}/similar?api_key=${API_KEY}&language=en-US&page=${pageNum}&region=US`
+                `/movie/${id}/similar?api_key=${API_KEY}&language=en-US&page=${pageNum}&region=US`
               );
         
               const getCredits = api.get(
-                `/movie/${movie_id}/credits?api_key=${API_KEY}&language=en-US`
+                `/movie/${id}/credits?api_key=${API_KEY}&language=en-US`
               );
               const [
-                MovieDetailJson,
-                MovieVideos,
-                MovieReviews,
-                RecommendMovies,
-                SimilarMovies,
-                MovieCredits,
+                movieDetail,
+                movieVideos,
+                movieReviews,
+                recommendMovies,
+                similarMovies,
+                movieCredits,
               ] = await Promise.all([
-                getMovieDetailJson,
+                getMovieDetail,
                 getMovieVideos,
                 getMovieReviews,
                 getRecommendMovies,
@@ -44,12 +44,13 @@ function getMovieDetail(movie_id, pageNum){
               ]);
               
               dispatch(movieDetail.getMovieDetailSuccess({
-                MovieDetailJson: MovieDetailJson,
-                MovieVideos: MovieVideos,
-                MovieReviews: MovieReviews,
-                RecommendMovies: RecommendMovies,
-                SimilarMovies: SimilarMovies,
-                MovieCredits: MovieCredits,
+                movieDetail: movieDetail.data,
+                movieVideos: movieVideos.data,
+                movieReviews: movieReviews.data,
+                recommendMovies: recommendMovies.data,
+                similarMovies: similarMovies.data,
+                movieCredits: movieCredits.data,
+                loading: false,
               })
 
               );
