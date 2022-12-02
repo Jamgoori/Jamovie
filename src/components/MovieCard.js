@@ -2,6 +2,8 @@ import React from "react";
 import { Badge } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 const MovieCard = ({ item }) => {
   const navigate = useNavigate();
   const onClickImg = () => {

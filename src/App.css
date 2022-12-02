@@ -1,5 +1,5 @@
 .body{
-  background-color: black;
+  background-color: rgb(21, 20, 20);
   color: white;
 }
 .nav-head{
@@ -51,7 +51,149 @@
   cursor: pointer;
 }
 
-.overLay{
-
+.bannerImg{
+  background-position: 50%;
+  background-size: cover;
+  left: 0;
+  top: 65px;
+  opacity: 1;
+  position: absolute;
+  width: 100%;
+  height: 70%;
+  overflow: hidden;
+  z-index: 1;
 }
 
+.testtest{
+  height: 600px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-top: 80px;
+  padding-left: 20px;
+}
+.testtest p {
+  margin-top: 40px;
+}
+
+.MovieDetail_section {
+  position: relative;
+  background-color: #141414;
+}
+
+.MovieDetail_section h1 {
+  position: relative;
+  margin: 0;
+  padding-left: 10px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.subTitle {
+  color: red;
+  font-size: 42px;
+  margin-right: 10px;
+  padding-left: 20px;
+  position: relative;
+}
+.divide_line {
+  border-bottom: 1px solid rgba(255, 0, 0, 0.5);
+  width: 100%;
+  margin-left: 40px;
+}
+
+.MovieDetail_section_overview {
+  font-size: 15px;
+  padding: 10px 30px;
+  line-height: 25px;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+}
+
+.MovieDetail_section_overview_divide_line {
+  border-bottom: 1px solid rgba(255, 0, 0, 0.3);
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 40px;
+  width: 60%;
+  display: none;
+}
+
+.MovieDetail_section_overview_item_left {
+  margin-right: 100px;
+  max-width: 50vw;
+}
+
+.MovieDetail_section_overview_item_right {
+  max-width: 50vw;
+}
+
+.MovieDetail_section_overview_item_right div {
+  margin-bottom: 25px;
+}
+
+.MovieDetail_section_overview_item_right div:nth-child(3) {
+  margin-bottom: -20px;
+}
+.MovieDetail_section_overview_item_right div span {
+  font-size: 13px;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.MovieDetail_section_overview_vote_container {
+  display: flex;
+}
+
+.overview_vote_average {
+  font-size: 15px;
+  padding: 3px 10px;
+  vertical-align: middle;
+  border-radius: 15%;
+  background-color: rgb(231, 150, 0);
+  color: rgb(30, 30, 30);
+  font-weight: bold;
+  margin-left: 5px;
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.overview_genres {
+  word-break: break-all;
+  white-space: nowrap;
+  overflow: scroll;
+  font-weight: bold;
+  padding: 5px 10px;
+  margin-left: 5px;
+  margin-right: 15px;
+  margin-top: 20px;
+  border-radius: 5px;
+  background-color: rgb(255, 40, 40);
+  color: white;
+}
+
+.overview_G_rate {
+  color: rgb(30, 30, 30);
+  font-size: 18px !important;
+  font-weight: bolder;
+  padding: 5px 15px;
+  border-radius: 5px;
+  background-color: rgb(0, 146, 0);
+  text-align: center;
+  margin-left: 5px;
+  transform: scale(0.8);
+  display: inline-block;
+}
+
+.overview_adult_rate {
+  color: rgb(30, 30, 30);
+  font-weight: bold;
+  padding: 3px 10px;
+  margin-left: 7px;
+  border-radius: 5px;
+  background-color: rgb(162, 0, 0);
+  text-align: center;
+  margin-left: 5px;
+}
