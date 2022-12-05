@@ -33,7 +33,7 @@ const MovieCard = ({ item }) => {
             ))}
           </div>
           <div>
-            <span>★ {item.vote_average.toFixed(1)}</span>
+            <span>⭐ {item.vote_average.toFixed(1)}</span>
           </div>
         </div>
     </>

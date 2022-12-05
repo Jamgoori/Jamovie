@@ -75,19 +75,17 @@
   margin-top: 40px;
 }
 
-.MovieDetail_section {
+.MovieDetail_Section {
   position: relative;
   background-color: #141414;
-  padding-top: 22rem;
 }
 
-
-.MovieDetail_section h1 {
+.MovieDetail_Section h1 {
   position: relative;
-  margin: 0;
   padding-left: 10px;
   padding-top: 30px;
   padding-bottom: 30px;
+
   display: flex;
   align-items: center;
   white-space: nowrap;
@@ -95,9 +93,7 @@
 .subTitle {
   color: red;
   font-size: 42px;
-  margin-top: 2rem;
   margin-right: 10px;
-  padding-left: 20px;
   position: relative;
 }
 .divide_line {

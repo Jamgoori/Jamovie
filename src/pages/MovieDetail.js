@@ -4,31 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import MovieSlide from "../components/MovieSlide";
 import ClipLoader from "react-spinners/ClipLoader";
-import { useNavigate } from "react-router-dom";
-import Row from "react-bootstrap/esm/Row";
-import Carousel from "react-multi-carousel";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper";
-import { Badge } from "react-bootstrap";
-
-const responsive = {
-  superLargeDesktop: {
-    breakpoint: { max: 4000, min: 3000 },
-    items: 5,
-  },
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 5,
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2,
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-  },
-};
 
 const MovieDetail = () => {
   const dispatch = useDispatch();
@@ -61,7 +36,7 @@ const MovieDetail = () => {
       </div>
 
       <div className="MovieDetail_Section">
-        <h1 className="MovieDetail_Section">
+        <h1 >
           <span className="subTitle">&#10095;</span>
           <span>OVERVIEW</span>
           <span className="divide_line"></span>
@@ -122,24 +97,6 @@ const MovieDetail = () => {
         </div>
 
         <div>
-
-          {/* <div className="cardFlex">
-            {movieDetail2.genres &&
-              RecommendMovies.results.slice(0, 5).map((item, index) => (
-                <span key={index}>
-                  {item.title}
-                  <div
-                    className="card22"
-                    style={{
-                      backgroundImage:
-                        "url(" +
-                        `https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${item.poster_path}` +
-                        ")",
-                    }}
-                  ></div>
-                </span>
-              ))}
-          </div> */}
                     <h1>
             <span className="subTitle">&#10095;</span>
             <span>RECOMMEND MOVIES</span>
