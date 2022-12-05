@@ -2,6 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 let initialState = {
     movieDetail2: [],
+    MovieCredits: {},
+    RecommendMovies: {},
+    SimilarMovies: {},
     loading: true,
 };
 
@@ -14,6 +17,9 @@ const detailSlice = createSlice({
         },
         getMovieDetailSuccess(state,action){
             state.movieDetail2 = action.payload.movieDetail2;
+            state.MovieCredits = action.payload.MovieCredits;
+            state.RecommendMovies = action.payload.RecommendMovies;
+            state.SimilarMovies = action.payload.SimilarMovies;
             state.loading = action.false;
         },
         getMovieDetailFail(state,action){

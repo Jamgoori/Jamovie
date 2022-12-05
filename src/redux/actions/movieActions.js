@@ -32,8 +32,6 @@ function getMovies() {
         })
         
       );
-      
-console.log("냐옹",popularMovies);
     } catch (error) {
       dispatch(movieAction.getMoviesFail({ loading: false }));
     }
