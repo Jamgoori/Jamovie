@@ -39,7 +39,9 @@
   margin-left: 2rem;
   z-index: 10;
 }
-
+.cardZip{
+  margin-left: 1rem;
+}
 .moviecard{
   position: relative;
   width: 200px;
