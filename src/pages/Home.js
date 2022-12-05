@@ -13,7 +13,6 @@ const Home = () => {
   useEffect(() => {
     dispatch(movieActions.getMovies());
   }, []);
-  console.log("아", popularMovies)
   if (loading) {
     return <ClipLoader color="red" loading={loading} size={150} />;
   }

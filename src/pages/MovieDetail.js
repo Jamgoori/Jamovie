@@ -3,6 +3,7 @@ import { movieDetailAction } from "../redux/actions/movieDetailAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import MovieSlide from "../components/MovieSlide";
+import ClipLoader from "react-spinners/ClipLoader";
 import { useNavigate } from "react-router-dom";
 import Row from "react-bootstrap/esm/Row";
 import Carousel from "react-multi-carousel";
@@ -32,7 +33,7 @@ const responsive = {
 const MovieDetail = () => {
   const dispatch = useDispatch();
   const id = useParams();
-  const { movieDetail2, MovieCredits, RecommendMovies, SimilarMovies } =
+  const { movieDetail2, RecommendMovies, SimilarMovies, loading } =
     useSelector((state) => state.detail);
 
   useEffect(
@@ -40,12 +41,10 @@ const MovieDetail = () => {
       dispatch(movieDetailAction.getMovieDetail(id, 1));
     },
     [],
-    console.log("Effect완료"),
-    console.log("테스트", movieDetail2),
-    console.log("배우", MovieCredits),
-    console.log("추천", RecommendMovies),
-    console.log("비리슷", SimilarMovies)
   );
+  if (loading) {
+    return <ClipLoader color="red" loading={loading} size={150} />;
+  }
   return (
     <>
       <div

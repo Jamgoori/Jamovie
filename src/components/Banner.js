@@ -1,7 +1,6 @@
 import React from "react";
 
 const Banner = ({ movie }) => {
-  console.log("MOVIE", movie);
   return (
     <>
       <div
