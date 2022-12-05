@@ -77,6 +77,15 @@ const MovieDetail = () => {
               </div>
             </div>
             <div>
+              <div>
+            <span>GENRES</span>
+            {movieDetail2.genres &&
+              movieDetail2.genres.map((item, index) => (
+                <span className="overview_genres" key={index}>
+                  {item.name}
+                </span>
+              ))}
+              </div>
               <span>RATED</span>
               <span>
                 {!movieDetail2.adult ? (
@@ -86,13 +95,7 @@ const MovieDetail = () => {
                 )}
               </span>
             </div>
-            <span>GENRES</span>
-            {movieDetail2.genres &&
-              movieDetail2.genres.map((item, index) => (
-                <span className="overview_genres" key={index}>
-                  {item.name}
-                </span>
-              ))}
+
           </div>
         </div>
 
