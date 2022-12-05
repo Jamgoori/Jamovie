@@ -91,7 +91,7 @@ const MovieDetail = () => {
                 <div>
                   <span>VOTE AVERAGE</span>
                   <span className="overview_vote_average">
-                    {movieDetail2.vote_average}
+                    {movieDetail2.vote_average && movieDetail2.vote_average.toFixed(1)}
                   </span>
                 </div>
                 <div>

@@ -28,12 +28,12 @@ const MovieCard = ({ item }) => {
           <div>
             {item.genre_ids.map((id) => (
               <Badge bg="warning" text="dark">
-                {genreList.find(item=>item.id==id).name}
+                {genreList && genreList.find(item=>item.id==id).name}
               </Badge>
             ))}
           </div>
           <div>
-            <span>★ {item.vote_average}</span>
+            <span>★ {item.vote_average.toFixed(1)}</span>
           </div>
         </div>
     </>
