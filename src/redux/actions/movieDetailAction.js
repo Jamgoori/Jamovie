@@ -34,7 +34,6 @@ function getMovieDetail({ id },pageNum) {
           SimilarMovies: SimilarMovies.data
         })
       );
-      console.log("비슷", SimilarMovies)
     } catch (error) {
       dispatch(movieDetail.getMoviesFail({ loading: false }));
     }
