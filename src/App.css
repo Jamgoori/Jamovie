@@ -40,15 +40,16 @@
   z-index: 10;
 }
 
-.card22{
-  width: 300px;
-  height: 200px !important;
-  background-position: center;
-  background-repeat: no-repeat;
+.moviecard{
+  position: relative;
+  width: 200px;
+  height: 300px;
   background-size: cover;
-  color: white;
-  border-radius: 5px;
+  background-position: 50%;
   cursor: pointer;
+  border-radius: 10px;
+  transform-origin: bottom;
+  transition: 0.3s;
 }
 
 .bannerImg{

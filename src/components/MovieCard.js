@@ -13,18 +13,18 @@ const MovieCard = ({ item }) => {
   return (
     <>
       <div
-        className="card22"
+        className="moviecard"
         style={{
           backgroundImage:
             "url(" +
-            `https://www.themoviedb.org/t/p/w355_and_h200_multi_faces/${item.poster_path}` +
+            `https://www.themoviedb.org/t/p/w440_and_h660_multi_faces/${item.poster_path}` +
             ")",
         }} onClick={onClickImg}
       >
 
       </div>
       <div className="overLay">
-          <h3>{item.title}</h3>
+          <h4>{item.title}</h4>
           <div>
             {item.genre_ids.map((id) => (
               <Badge bg="warning" text="dark">

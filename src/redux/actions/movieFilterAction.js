@@ -44,7 +44,6 @@ function getMovieFilter(
         })
       );
     } catch (error) {
-      dispatch(movieDetail.getMoviesFail({ loading: false }));
     }
   };
 }
