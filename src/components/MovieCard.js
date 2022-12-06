@@ -6,8 +6,10 @@ import { useNavigate } from "react-router-dom";
 const MovieCard = ({ item }) => {
   const navigate = useNavigate();
   const onClickImg = () => {
-    navigate(`/movies/${item.id}`)
+    navigate(`/movies/${item.id}`, {replace: false});
   }
+
+
   const{genreList} = useSelector(state=>state.movie)
   return (
     <article className="cardZip">

@@ -8,15 +8,14 @@ import ClipLoader from "react-spinners/ClipLoader";
 const MovieDetail = () => {
   const dispatch = useDispatch();
   const id = useParams();
-  const { movieDetail2, RecommendMovies, SimilarMovies, loading } =
+  const { movieDetail2, RecommendMovies, SimilarMovies, loading,MovieReviews } =
     useSelector((state) => state.detail);
 
   useEffect(
     () => {
       dispatch(movieDetailAction.getMovieDetail(id, 1));
-    },
-    [],
-  );
+    },[],
+    console.log("리뷰",MovieReviews[0].content));
   if (loading) {
     return <ClipLoader color="red" loading={loading} size={150} />;
   }
@@ -83,6 +82,7 @@ const MovieDetail = () => {
               movieDetail2.genres.map((item, index) => (
                 <span className="overview_genres" key={index}>
                   {item.name}
+                  
                 </span>
               ))}
               </div>
@@ -114,6 +114,14 @@ const MovieDetail = () => {
             </h1>
             {SimilarMovies.results && <MovieSlide movie={SimilarMovies} />}
           </div>
+        </div>
+        <h1>
+          <span className="subTitle">&#10095;</span>
+          <span>REVIEWS</span>
+          <span className="divide_line"></span>
+        </h1>
+        <div>
+        {MovieReviews[0].content}
         </div>
       </div>
     </>

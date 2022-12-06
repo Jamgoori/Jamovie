@@ -5,6 +5,7 @@ let initialState = {
     MovieCredits: {},
     RecommendMovies: {},
     SimilarMovies: {},
+    MovieReviews: [],
     loading: true,
 };
 
@@ -20,6 +21,7 @@ const detailSlice = createSlice({
             state.MovieCredits = action.payload.MovieCredits;
             state.RecommendMovies = action.payload.RecommendMovies;
             state.SimilarMovies = action.payload.SimilarMovies;
+            state.MovieReviews = action.payload.MovieReviews;
             state.loading = action.false;
         },
         getMovieDetailFail(state,action){
