@@ -8,14 +8,14 @@ import ClipLoader from "react-spinners/ClipLoader";
 const MovieDetail = () => {
   const dispatch = useDispatch();
   const id = useParams();
-  const { movieDetail2, RecommendMovies, SimilarMovies, loading,MovieReviews } =
+  const { movieDetail2, RecommendMovies, SimilarMovies, loading, MovieReviews } =
     useSelector((state) => state.detail);
 
   useEffect(
     () => {
       dispatch(movieDetailAction.getMovieDetail(id, 1));
     },[],
-    console.log("리뷰",MovieReviews[0].content));
+    console.log("리뷰",MovieReviews));
   if (loading) {
     return <ClipLoader color="red" loading={loading} size={150} />;
   }
@@ -121,7 +121,7 @@ const MovieDetail = () => {
           <span className="divide_line"></span>
         </h1>
         <div>
-        {MovieReviews[0].content}
+        {/* {MovieReviews[0].content} */}
         </div>
       </div>
     </>
