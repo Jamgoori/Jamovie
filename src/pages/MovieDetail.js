@@ -99,28 +99,12 @@ const MovieDetail = () => {
           </div>
         </div>
 
-        <div>
-                    <h1>
-            <span className="subTitle">&#10095;</span>
-            <span>RECOMMEND MOVIES</span>
-            <span className="divide_line"></span>
-          </h1>
-          {RecommendMovies.results && <MovieSlide movie={RecommendMovies}/>}
-          <div>
-            <h1>
-              <span className="subTitle">&#10095;</span>
-              <span>SIMILAR MOVIES</span>
-              <span className="divide_line"></span>
-            </h1>
-            {SimilarMovies.results && <MovieSlide movie={SimilarMovies} />}
-          </div>
-        </div>
         <h1>
           <span className="subTitle">&#10095;</span>
           <span>REVIEWS</span>
           <span className="divide_line"></span>
         </h1>
-        <div>
+        <div style={{display: "grid", gridTemplateColumns: "1fr 1fr 1fr", height:"100%"}}>
           
           {MovieReviews && MovieReviews.map((item,index) =>{
             if(                item.author_details.avatar_path !== null &&
@@ -154,16 +138,26 @@ const MovieDetail = () => {
             )
           }
         </div>
+        
+
+        <div>
+                    <h1>
+            <span className="subTitle">&#10095;</span>
+            <span>RECOMMEND MOVIES</span>
+            <span className="divide_line"></span>
+          </h1>
+          {RecommendMovies.results && <MovieSlide movie={RecommendMovies}/>}
+          <div>
+            <h1>
+              <span className="subTitle">&#10095;</span>
+              <span>SIMILAR MOVIES</span>
+              <span className="divide_line"></span>
+            </h1>
+            {SimilarMovies.results && <MovieSlide movie={SimilarMovies} />}
+          </div>
+        </div>
       </div>
     </>
   );
 };
-// {movieDetail2.genres &&
-//   movieDetail2.genres.map((item, index) => (
-//     <span className="overview_genres" key={index}>
-//       {item.name}
-      
-//     </span>
-//   ))}
-
 export default MovieDetail;

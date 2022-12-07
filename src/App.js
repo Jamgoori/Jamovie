@@ -5,6 +5,7 @@ import Movies from './pages/Movies';
 import {Routes, Route} from "react-router-dom"
 import TopNav from './components/TopNav';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ReviewModal from './components/ReviewModal';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Home/>}/>
         <Route path="/movies" element={<Movies/>}/>
         <Route path="/movies/:id" element={<MovieDetail/>}/>
+        <Route path='/test' element={<ReviewModal/>}/>
       </Routes>
     </div>
   );
