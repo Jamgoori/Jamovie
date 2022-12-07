@@ -213,6 +213,24 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
+.review_card_top {
+  width: 100%;
+  color: rgb(220, 220, 220) !important;
+  text-align: left;
+  justify-content: flex-start !important;
+  padding: 0 30px !important;
+  padding-bottom: 40px !important;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.review_card_top:hover {
+  transform: translateY(-5px);
+  transition: 0.3s;
+}
+
 .review_content_section {
   height: 100px;
   overflow: hidden;
@@ -227,23 +245,20 @@
   background: linear-gradient(to top, #141414, transparent 50px);
   pointer-events: none;
 }
-.review_content {
-  box-sizing: content-box;
+
+.review_card {
+  position: relative;
   width: 100%;
-  overflow: hidden;
-  text-overflow: clip;
-  line-height: 22px;
-  color: rgb(210, 210, 210);
+  height: 200px;
 }
-.review_content_readMore {
-  width: 100%;
-  text-align: center;
-  position: absolute;
-  left: 0;
-  top: 200px;
-  padding: 0;
-  opacity: 0.5;
+
+.review_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  vertical-align: middle;
 }
+
 .reviewer_info {
   display: flex;
   justify-content: space-between;
@@ -273,20 +288,49 @@
 .review_content_section_modal:first-child {
   padding: 0 50px;
 }
-.review_card_top {
-  width: 100%;
-  color: rgb(220, 220, 220) !important;
-  text-align: left;
-  justify-content: flex-start !important;
-  padding: 0 30px !important;
-  padding-bottom: 40px !important;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s;
+
+@media screen and (max-width: 768px) {
+  .reviewer_info_modal {
+    width: 100% !important;
+    margin: auto;
+  }
+
+  .review_content_section_modal:first-child {
+    padding: 0;
+  }
 }
 
-.review_card_top:hover {
-  transform: translateY(-5px);
-  transition: 0.3s;
+.review_content {
+  box-sizing: content-box;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: clip;
+  line-height: 22px;
+  color: rgb(210, 210, 210);
+}
+
+.review_content_readMore {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  top: 200px;
+  padding: 0;
+  opacity: 0.5;
+}
+.scrollX {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.scrollX::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
+.author {
+  font-size: 20px;
+  font-weight: bold;
+}
+.rating {
+  font-size: 18px;
+  color: rgb(214, 44, 44);
+  font-weight: bold;
 }
