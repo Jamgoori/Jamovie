@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import MovieSlide from "../components/MovieSlide";
 import ClipLoader from "react-spinners/ClipLoader";
-
+import MovieReview from "../components/MovieReview";
 const MovieDetail = () => {
   const dispatch = useDispatch();
   const id = useParams();
@@ -121,11 +121,49 @@ const MovieDetail = () => {
           <span className="divide_line"></span>
         </h1>
         <div>
-        {/* {MovieReviews[0].content} */}
+          
+          {MovieReviews && MovieReviews.map((item,index) =>{
+            if(                item.author_details.avatar_path !== null &&
+              item.author_details.avatar_path.includes("https") === true){
+              
+              let avatar_path = item.author_details.avatar_path;
+              return(
+                <div>
+              
+                <MovieReview item={item} avatar_path={avatar_path}/>
+                </div>
+              )}
+              else if (item.author_details.avatar_path == null){
+                let avatar_path = "";
+                return(
+                  <div>
+                    <MovieReview item={item} avatar_path={avatar_path}/>
+                    </div>
+                )
+              }
+              else{
+                let avatar_path = item.author_details.avatar_path;
+                return(
+                  <div>
+                    <MovieReview item={item} avatar_path={avatar_path}/>
+                    </div>
+                )
+              }
+            }
+
+            )
+          }
         </div>
       </div>
     </>
   );
 };
+// {movieDetail2.genres &&
+//   movieDetail2.genres.map((item, index) => (
+//     <span className="overview_genres" key={index}>
+//       {item.name}
+      
+//     </span>
+//   ))}
 
 export default MovieDetail;
