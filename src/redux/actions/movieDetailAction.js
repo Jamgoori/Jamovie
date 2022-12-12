@@ -25,6 +25,7 @@ function getMovieDetail({ id },pageNum) {
       const getMovieReviewsApi = api.get(
         `/movie/${id}/reviews?api_key=${API_KEY}&language=en-US&page=${pageNum}&region=US`
       );
+      
       let [
         movieDetail2,
         MovieCredits,

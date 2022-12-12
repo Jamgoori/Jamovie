@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { movieDetailAction } from "../redux/actions/movieDetailAction";
 import { useDispatch, useSelector } from "react-redux";
+
 import { useParams } from "react-router-dom";
 import MovieSlide from "../components/MovieSlide";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -10,12 +11,12 @@ const MovieDetail = () => {
   const id = useParams();
   const { movieDetail2, RecommendMovies, SimilarMovies, loading, MovieReviews } =
     useSelector((state) => state.detail);
-
+    
   useEffect(
     () => {
       dispatch(movieDetailAction.getMovieDetail(id, 1));
     },[],
-    console.log("리뷰",MovieReviews));
+    console.log(movieDetail2));
   if (loading) {
     return <ClipLoader color="red" loading={loading} size={150} />;
   }

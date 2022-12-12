@@ -35,7 +35,7 @@ const filterSlice = createSlice({
             state.voteAverageLte = action.payload.vote_lte;
             state.includeVideo = action.payload.includeVideo;
             state.keyword = {};
-            loading = action.false;
+            state.loading = action.false;
 
         },
         getMovieFilterFail(state,action){

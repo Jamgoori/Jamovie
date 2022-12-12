@@ -30,8 +30,8 @@ function getMovies() {
           genreList: genreList.data.genres,
           loading: false,
         })
-        
       );
+      
     } catch (error) {
       dispatch(movieAction.getMoviesFail({ loading: false }));
     }

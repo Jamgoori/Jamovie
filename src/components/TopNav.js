@@ -1,6 +1,15 @@
 import {Navbar, Container, Form, Button, Nav,NavDropdown,FormControl} from "react-bootstrap"
 import {Link} from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { movieFilterAction } from "../redux/actions/movieFilterAction";
 function TopNav() {
+  const dispatch =useDispatch();
+  const{keyword} = useSelector(state=>state.filter);
+  useEffect(()=>{
+    dispatch(movieFilterAction.getMovieFilter());
+  }, []);
+
   return (
     <Navbar bg="dark" variant = "dark" expand="lg">
       <Container fluid>
@@ -21,6 +30,7 @@ function TopNav() {
               placeholder="Search"
               className="me-2"
               aria-label="Search"
+              value={keyword}
             />
             <Button variant="danger">Search</Button>
           </Form>

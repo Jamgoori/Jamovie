@@ -1,6 +1,6 @@
 import api from "../api";
 import { movieFilters } from "../reducers/movieFilterReducer";
-
+const API_KEY = process.env.REACT_APP_API_KEY;
 function getMovieFilter(
   keyword,
   sortBy,
@@ -12,11 +12,11 @@ function getMovieFilter(
   voteAverageLte,
   pageNum
 ) {
-  const API_KEY = process.env.REACT_APP_API_KEY;
+  
   return async (dispatch) => {
     try {
 
-      const FilteredMovies = api.get(
+      const FilteredMoviesApi = api.get(
         `/discover/movie?api_key=${API_KEY}&language=en-US&page=1&region=US${
           keyword ? `&with_text_query=${keyword}` : ""
         }${includeVideo ? `&include_video=${includeVideo}` : ""}${
@@ -29,25 +29,27 @@ function getMovieFilter(
           pageNum ? `&page=${pageNum}` : "&page=1"
         }`
       );
-      const getGenres = api.get(
+      const getGenresApi = api.get(
         `/genre/movie/list?api_key=${API_KEY}&language=en-US&region=US`
       );
 
-      let [FilteredMoviesJson, Genres] = await Promise.all([FilteredMovies,
-        getGenres,]);
+      let [FilteredMovies, Genres] = await Promise.all([FilteredMoviesApi,
+        getGenresApi,]);
 
       dispatch(
         movieFilters.getMovieFilterSuccess({
-            FilteredMoviesJson: FilteredMovies.data,
+            FilteredMovies: FilteredMovies.data,
             genreList: Genres.data.genres,
+            loading: false,
         })
       );
-    } catch {
+    } 
+    catch {
         dispatch(movieFilters.getMovieFilterFail({ loading: false }))
     }
   };
 }
 
-export const movieFilterActions = {
+export const movieFilterAction = {
     getMovieFilter
 }
