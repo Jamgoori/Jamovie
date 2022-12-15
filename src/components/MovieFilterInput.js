@@ -1,9 +1,35 @@
-import React from 'react'
+import React, { useEffect, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { movieFilterAction } from "../redux/actions/movieFilterAction";
 
-const MovieFilterInput = () => {
-  return (
-    <div>MovieFilterInput</div>
-  )
-}
+const MovieFilterSlider = () => {
+  const dispatch = useDispatch();
 
-export default MovieFilterInput
+  const {
+    keyword,
+    sortBy,
+    withGenres,
+    releaseDateGte,
+    releaseDateLte,
+    voteAverageGte,
+    voteAverageLte,
+  } = useSelector((state) => state.filter);
+
+  useEffect(() => {
+
+      dispatch(
+        movieFilterAction.getMovieFilter(
+          keyword,
+          sortBy,
+          withGenres,
+          releaseDateGte,
+          releaseDateLte,
+          voteAverageGte,
+          voteAverageLte
+        ))
+  }, []);
+
+  return <div>MovieFilterSlider</div>;
+};
+
+export default MovieFilterSlider;

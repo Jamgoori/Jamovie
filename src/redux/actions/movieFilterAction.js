@@ -5,7 +5,6 @@ function getMovieFilter(
   keyword,
   sortBy,
   withGenres,
-  includeVideo,
   releaseDateGte,
   releaseDateLte,
   voteAverageGte,
@@ -19,7 +18,7 @@ function getMovieFilter(
       const FilteredMoviesApi = api.get(
         `/discover/movie?api_key=${API_KEY}&language=en-US&page=1&region=US${
           keyword ? `&with_text_query=${keyword}` : ""
-        }${includeVideo ? `&include_video=${includeVideo}` : ""}${
+        }${
           releaseDateGte ? `&release_date.gte=${releaseDateGte}` : ""
         }${releaseDateLte ? `&release_date.lte=${releaseDateLte}` : ""}${
           voteAverageGte ? `&vote_average.gte=${voteAverageGte}` : ""
@@ -37,7 +36,7 @@ function getMovieFilter(
         getGenresApi,]);
 
       dispatch(
-        movieFilters.getMovieFilterSuccess({
+        movieFilters.getMovieFilter({
             FilteredMovies: FilteredMovies.data,
             genreList: Genres.data.genres,
             loading: false,

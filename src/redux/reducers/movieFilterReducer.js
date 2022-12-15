@@ -1,14 +1,13 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-let initialState = {
+let initialState = {    
+    keyword: "",
     moreMoviesData: {},
     moreMoviesDataLoading: true,
     genreListData: {},
-    keyword: "",
     loading: true,
     sortBy: "",
     withGenres: "",
-    includeVideo: "",
     releaseDateGte: "",
     releaseDateLte: "",
     voteAverageGte: "",
@@ -51,10 +50,7 @@ const filterSlice = createSlice({
             state.voteAverageGte = action.payload.vote_gte;
             state.voteAverageLte = action.payload.vote_lte;
         },
-        includeMovieVideoToggleSuccess(state,action){
-            state.includeVideo = action.payload.includeVideo;
 
-        },
         resetMoviesSearchSuccess(state,action){
             state.keyword = {};
             state.loading = action.false;
