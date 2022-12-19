@@ -1,13 +1,16 @@
-import { configureStore } from "@reduxjs/toolkit";
-import movieReducer from './reducers/movieReducer';
-import movieDetailReducer from './reducers/movieDetailReducer';
-import movieFilterReducer from "./reducers/movieFilterReducer";
-const store = configureStore({
-    reducer:{
-        movie : movieReducer,
-        detail : movieDetailReducer,
-        filter : movieFilterReducer
-    }
-})
+import * as actionCreators from "./actions/movieActions";
+import { createStore, applyMiddleware } from "redux";
+import rootReducer from "./reducers/index";
+import thunk from "redux-thunk";
+// import { composeWithDevTools } from "@redux-devtools/extension";
+
+// const composeEnhancers = composeWithDevTools({
+//   actionCreators,
+//   trace: true,
+//   traceLimit: 25,
+// });
+
+// let store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
+let store = createStore(rootReducer, applyMiddleware(thunk));
 
 export default store;

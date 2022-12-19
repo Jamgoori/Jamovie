@@ -1,42 +1,61 @@
 import api from "../api";
-import { movieAction } from "../reducers/movieReducer";
-const API_KEY = process.env.REACT_APP_API_KEY;
 
 function getMovies() {
+  const API_KEY = process.env.REACT_APP_API_KEY;
   return async (dispatch) => {
     try {
-      dispatch(movieAction.getMovieRequest({ loading: true }));
-      const popularMovieApi = api.get(
-        `movie/popular?api_key=${API_KEY}&language=en-US&page=1`
-      );
-      const topRateApi = api.get(
-        `movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`
-      );
-      const upComingApi = api.get(
-        `movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`
-      );
-      const genreApi = api.get(
-        `/genre/movie/list?api_key=${API_KEY}&language=en-US`
+      dispatch({ type: "GET_MOVIES_REQUEST" });
+
+      const getPopularMovies = api.get(
+        `/movie/popular?api_key=${API_KEY}&language=en-US&page=1&region=US`
       );
 
-      let [popularMovies, topRatedMovies, upcomingMovies, genreList] =
-        await Promise.all([popularMovieApi, topRateApi, upComingApi, genreApi]);
-
-      dispatch(
-        movieAction.getMovieSuccess({
-          popularMovies: popularMovies.data,
-          topRatedMovies: topRatedMovies.data,
-          upcomingMovies: upcomingMovies.data,
-          genreList: genreList.data.genres,
-          loading: false,
-        })
+      const getTopRatedMovies = api.get(
+        `/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1&region=US`
       );
-      
+
+      const getUpcomingMovies = api.get(
+        `/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1&region=US`
+      );
+
+      const getGenres = api.get(
+        `/genre/movie/list?api_key=${API_KEY}&language=en-US&region=US`
+      );
+
+      const getNowPlayingMovies = api.get(
+        `/movie/now_playing?api_key=${API_KEY}&language=en-US&page=1&region=US`
+      );
+
+      const [
+        popularMoviesJson,
+        topRatedMoviesJson,
+        upcomingMoviesJson,
+        GenresJson,
+        NowPlayingMoviesJson,
+      ] = await Promise.all([
+        getPopularMovies,
+        getTopRatedMovies,
+        getUpcomingMovies,
+        getGenres,
+        getNowPlayingMovies,
+      ]);
+
+      dispatch({
+        type: "GET_MOVIES_SUCCESS",
+        payload: {
+          popularMoviesJson: popularMoviesJson,
+          topRatedMoviesJson: topRatedMoviesJson,
+          upcomingMoviesJson: upcomingMoviesJson,
+          movieGenresJson: GenresJson,
+          NowPlayingMoviesJson: NowPlayingMoviesJson,
+        },
+      });
     } catch (error) {
-      dispatch(movieAction.getMoviesFail({ loading: false }));
+      dispatch({ type: "GET_MOVIES_FAILURE", payload: { error } });
     }
   };
 }
+
 export const movieActions = {
   getMovies,
 };

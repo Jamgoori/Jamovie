@@ -1,33 +1,58 @@
-import { createSlice } from "@reduxjs/toolkit";
-
 let initialState = {
-    movieDetail2: [],
-    MovieCredits: {},
+    MovieDetailData: {},
+    MovieVideos: {},
+    MovieVideosForBanner: {},
+    MovieReviews: {},
     RecommendMovies: {},
     SimilarMovies: {},
-    MovieReviews: [],
+    MovieCredits: {},
     loading: true,
-};
-
-const detailSlice = createSlice({
-    name: 'detail',
-    initialState,
-    reducers: {
-        getMovieDetailRequest(state,action){
-            state.loading = action.true
-        },
-        getMovieDetailSuccess(state,action){
-            state.movieDetail2 = action.payload.movieDetail2;
-            state.MovieCredits = action.payload.MovieCredits;
-            state.RecommendMovies = action.payload.RecommendMovies;
-            state.SimilarMovies = action.payload.SimilarMovies;
-            state.MovieReviews = action.payload.MovieReviews;
-            state.loading = action.false;
-        },
-        getMovieDetailFail(state,action){
-            state.loading = action.false
-        }
+  };
+  
+  function movieDetailReducer(state = initialState, action) {
+    const { type, payload } = action;
+  
+    switch (type) {
+      case "GET_MOVIE_DETAIL_REQUEST":
+        return { ...state };
+  
+      case "GET_MOVIE_DETAIL_SUCCESS":
+        return {
+          ...state,
+          MovieDetailData: payload.MovieDetailJson.data,
+          MovieVideos: payload.MovieVideos,
+          MovieVideosForBanner: payload.MovieVideosForBanner,
+          MovieReviews: payload.MovieReviews,
+          RecommendMovies: payload.RecommendMovies,
+          SimilarMovies: payload.SimilarMovies,
+          loading: false,
+          MovieCredits: payload.MovieCredits,
+        };
+  
+      case "RESET_MOVIE_DETAIL_STORE_SUCCESS":
+        return {
+          ...state,
+          MovieDetailData: {},
+          MovieVideos: {},
+          MovieReviews: {},
+          RecommendMovies: {},
+          SimilarMovies: {},
+          loading: true,
+        };
+  
+      case "RESET_MOVIE_VIDEOS_SUCCESS":
+        return {
+          ...state,
+          MovieVideos: {},
+        };
+  
+      case "GET_MOVIE_DETAIL_FAILURE":
+        return alert(`Sorry,\n"${payload.error.message}"`);
+  
+      default:
+        return { ...state };
     }
-});
-export default detailSlice.reducer;
-export const movieDetail = detailSlice.actions;
+  }
+  
+  export default movieDetailReducer;
+  
