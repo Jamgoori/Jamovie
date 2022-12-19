@@ -1,19 +1,17 @@
-
 import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useNavigate } from "react-router-dom";
 
-
 const FilteredMovieList = ({ movies, innerRef }) => {
-    let moviesData = movies.filter((item) => item.poster_path !== null);
+  let moviesData = movies.filter((item) => item.poster_path !== null);
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+
   return (
-    <div>
-        안녕
-          {moviesData && (
+    <>
+      {moviesData && (
         <Container>
           <Row>
             {moviesData.map((item, index) =>
@@ -53,9 +51,8 @@ const FilteredMovieList = ({ movies, innerRef }) => {
           </Row>
         </Container>
       )}
+    </>
+  );
+};
 
-    </div>
-  )
-}
-
-export default FilteredMovieList
+export default FilteredMovieList;
