@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
-import { movieFilterAction } from "../redux/actions/movieFilterAction";
+import { movieFilterAction } from "../redux/actions/movieFilterActions";
 import { useDispatch, useSelector } from "react-redux";
 import MovieFilterButton from "../components/MovieFilterButton";
 import FilteredMovieList from "../components/FilteredMovieList";

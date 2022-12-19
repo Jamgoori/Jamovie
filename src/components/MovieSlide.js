@@ -1,36 +1,50 @@
 import React from "react";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-import MovieCard from "./MovieCard";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Lazy } from "swiper";
+import { MovieCard } from "./MovieCard";
 
-const responsive = {
-  superLargeDesktop: {
-    // the naming can be any, depends on you.
-    breakpoint: { max: 4000, min: 3000 },
-    items: 5
-  },
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 5
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1
-  }
-};
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import "swiper/css/lazy";
 
-const MovieSlide = ({ movie }) => {
+export default function MovieSlide({ movies }) {
+  let moviesData = movies
+    .filter((item) => item.poster_path !== null)
+    .slice(0, 6);
+
   return (
-    <div>
-      {movie.results && <Carousel responsive={responsive}>
-      {movie.results.map(item=><MovieCard item={item}/>)}
-      </Carousel>}
-    </div>
+    <Swiper
+      slidesPerView={8}
+      spaceBetween={10}
+      slidesPerGroup={2}
+      speed={800}
+      loop={true}
+      loopFillGroupWithBlank={false}
+      navigation={true}
+      modules={[Navigation, Lazy]}
+      lazy={true}
+      breakpoints={{
+        0: {
+          slidesPerView: 4,
+          slidesPerGroup: 1,
+        },
+        450: {
+          slidesPerView: 4,
+          slidesPerGroup: 2,
+        },
+        920: {
+          slidesPerView: 6,
+          slidesPerGroup: 3,
+        },
+      }}
+    >
+      {moviesData &&
+        moviesData.map((item, index) => (
+          <SwiperSlide key={index}>
+            <MovieCard movie={item} key={index} />
+          </SwiperSlide>
+        ))}
+    </Swiper>
   );
-};
-
-export default MovieSlide;
+}

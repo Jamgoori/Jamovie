@@ -1,6 +1,6 @@
 import React ,{ useEffect }from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { movieFilterAction } from "../redux/actions/movieFilterAction";
+import { movieFilterAction } from "../redux/actions/movieFilterActions";
 
 
 const MovieFilterButton = () => {

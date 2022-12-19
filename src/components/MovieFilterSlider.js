@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
-import { movieFilterAction } from "../redux/actions/movieFilterAction";
+import { movieFilterAction } from "../redux/actions/movieFilterActions";
 
 const MovieFilterSlider = ({ min, max, text, id }) => {
     const isMounted = useRef(false);

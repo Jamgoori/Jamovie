@@ -1,7 +1,7 @@
+import * as React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import React from "react";
 
 const style = {
   position: "absolute",
@@ -17,7 +17,7 @@ const style = {
   p: 4,
 };
 
-const MovieReview = ({ avatar_path, item }) => {
+export default function MovieReview({ avatar_path, item }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -25,73 +25,141 @@ const MovieReview = ({ avatar_path, item }) => {
   return (
     <>
       <button
+        className="review_card_top"
+        onClick={handleOpen}
         variant="text"
         color="error"
-        onClick={handleOpen}
-        className="review_card_top"
       >
-        <article className="ReviewArticle">
-          <div className="firstLine">
-            <span className="author">{item.author} </span>
-            <span>
-              {item.author_details.rating ? (
-                <span className="rating">⭐ {item.author_details.rating} / 10</span>
-              ) : (
-                <span
+        <div className="review_card">
+          <div className="review_container">
+            <div className="reviewer_info">
+              <div className="reviewer_info_profile">
+                <div
                   style={{
-                    color: "gray",
-                    fontSize: 8,
+                    backgroundImage:
+                      "url(" +
+                      `https://www.gravatar.com/avatar${avatar_path}` +
+                      ")",
+                    width: 45,
+                    height: 45,
+                    borderRadius: 50,
+                    marginRight: 10,
+                    backgroundSize: "cover",
+                    filter: "brightness(75%)",
+                  }}
+                ></div>
+
+                <div
+                  style={{
+                    fontSize: "17px",
+                    fontWeight: "bold",
+                    maxWidth: "120px",
+                    overflow: "hidden",
+                    whiteSpace: "nowrap",
+                    textOverflow: "ellipsis",
                   }}
                 >
-                  NOT SCORED
-                </span>
-              )}
-            </span>
-            <span> {item.updated_at.slice(0, 10)}</span>
+                  {item.author}
+                </div>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <div
+                  style={{
+                    color: "red",
+                    fontSize: "18px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {item.author_details.rating ? (
+                    <p>{item.author_details.rating} / 10</p>
+                  ) : (
+                    <p
+                      style={{
+                        color: "gray",
+                        fontSize: 8,
+                      }}
+                    >
+                      NOT SCORED
+                    </p>
+                  )}
+                </div>
+                <div
+                  style={{
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                    paddingLeft: "20px",
+                  }}
+                >
+                  {item.updated_at.slice(0, 10)}
+                </div>
+              </div>
+            </div>
           </div>
           <div className="review_content_section">
             <div className="review_content">{item.content}</div>
+            <div className="review_content_readMore">Read more</div>
           </div>
-        </article>
+        </div>
       </button>
-
       <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-        className="scrollX"
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            <div
-              style={{
-                fontSize: "20px",
-                fontWeight: "bold",
-              }}
-            >
-              {item.author}
-            </div>
-            <div
-              style={{
-                color: "red",
-                fontSize: "20px",
-                fontWeight: "bold",
-                paddingLeft: "20px",
-              }}
-            >
-              {item.author_details.rating ? (
-                <p>{item.author_details.rating} / 10</p>
-              ) : (
-                <p
-                  style={{
-                    color: "gray",
-                    fontSize: 8,
-                  }}
-                >
-                  NOT SCORED
-                </p>
-              )}
+            <div className="reviewer_info reviewer_info_modal">
+              <div
+                style={{
+                  backgroundImage:
+                    "url(" +
+                    `https://www.gravatar.com/avatar${avatar_path}` +
+                    ")",
+                  width: 50,
+                  height: 50,
+                  borderRadius: 50,
+                  marginRight: 10,
+                  backgroundSize: "cover",
+                  filter: "brightness(75%)",
+                }}
+              ></div>
+
+              <div
+                style={{
+                  fontSize: "20px",
+                  fontWeight: "bold",
+                }}
+              >
+                {item.author}
+              </div>
+              <div
+                style={{
+                  color: "red",
+                  fontSize: "20px",
+                  fontWeight: "bold",
+                  paddingLeft: "20px",
+                }}
+              >
+                {item.author_details.rating ? (
+                  <p>{item.author_details.rating} / 10</p>
+                ) : (
+                  <p
+                    style={{
+                      color: "gray",
+                      fontSize: 8,
+                    }}
+                  >
+                    NOT SCORED
+                  </p>
+                )}
+              </div>
             </div>
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
@@ -106,6 +174,4 @@ const MovieReview = ({ avatar_path, item }) => {
       </Modal>
     </>
   );
-};
-
-export default MovieReview;
+}
