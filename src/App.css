@@ -24,13 +24,7 @@
   pointer-events: none;
 }
 
-.nav_logo {
-  content: "Jamovie";
-  position: relative;
-  width: 100px;
-  object-fit: contain;
-  cursor: pointer;
-}
+
 
 .nav a {
   font-weight: bold;

@@ -1,24 +1,26 @@
 import api from "../api";
-import { movieFilters } from "../reducers/movieFilterReducer";
-const API_KEY = process.env.REACT_APP_API_KEY;
-function getMovieFilter(
+
+const getFilteredMovies = (
   keyword,
   sortBy,
   withGenres,
+  includeVideo,
   releaseDateGte,
   releaseDateLte,
   voteAverageGte,
   voteAverageLte,
   pageNum
-) {
-  
+) => {
+  const API_KEY = process.env.REACT_APP_API_KEY;
+
   return async (dispatch) => {
     try {
+      dispatch({ type: "GET_FILTERED_MOVIES_REQUEST" });
 
-      const FilteredMoviesApi = api.get(
+      const FilteredMovies = api.get(
         `/discover/movie?api_key=${API_KEY}&language=en-US&page=1&region=US${
           keyword ? `&with_text_query=${keyword}` : ""
-        }${
+        }${includeVideo ? `&include_video=${includeVideo}` : ""}${
           releaseDateGte ? `&release_date.gte=${releaseDateGte}` : ""
         }${releaseDateLte ? `&release_date.lte=${releaseDateLte}` : ""}${
           voteAverageGte ? `&vote_average.gte=${voteAverageGte}` : ""
@@ -28,27 +30,29 @@ function getMovieFilter(
           pageNum ? `&page=${pageNum}` : "&page=1"
         }`
       );
-      const getGenresApi = api.get(
+
+      const getGenres = api.get(
         `/genre/movie/list?api_key=${API_KEY}&language=en-US&region=US`
       );
 
-      let [FilteredMovies, Genres] = await Promise.all([FilteredMoviesApi,
-        getGenresApi,]);
+      const [FilteredMoviesJson, GenresJson] = await Promise.all([
+        FilteredMovies,
+        getGenres,
+      ]);
 
-      dispatch(
-        movieFilters.getMovieFilter({
-            FilteredMovies: FilteredMovies.data,
-            genreList: Genres.data.genres,
-            loading: false,
-        })
-      );
-    } 
-    catch {
-        dispatch(movieFilters.getMovieFilterFail({ loading: false }))
+      dispatch({
+        type: "GET_FILTERED_MOVIES_SUCCESS",
+        payload: {
+          FilteredMoviesJson: FilteredMoviesJson,
+          movieGenresJson: GenresJson,
+        },
+      });
+    } catch (error) {
+      dispatch({ type: "GET_FILTERED_MOVIES_FAILURE", payload: { error } });
     }
   };
-}
+};
 
-export const movieFilterAction = {
-    getMovieFilter
-}
+export const movieFilterActions = {
+  getFilteredMovies,
+};

@@ -1,19 +1,20 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
-import { movieFilterAction } from "../redux/actions/movieFilterActions";
 import { useDispatch, useSelector } from "react-redux";
-import MovieFilterButton from "../components/MovieFilterButton";
+import { FadeLoader } from "react-spinners";
 import FilteredMovieList from "../components/FilteredMovieList";
-import MovieFilterInput from "../components/MovieFilterInput";
 import MovieFilterSlider from "../components/MovieFilterSlider";
+import MovieFilterButton from "../components/MovieFilterButton";
+import MovieFilterInput from "../components/MovieFilterInput";
+import { movieFilterActions } from "../redux/actions/movieFilterActions";
 import api from "../redux/api";
-
 
 const Movies = () => {
   const dispatch = useDispatch();
   const {
+    loading,
     moreMoviesData,
     moreMoviesDataLoading,
-    genreList,
+    genreListData,
     keyword,
     sortBy,
     withGenres,
@@ -21,8 +22,8 @@ const Movies = () => {
     releaseDateGte,
     releaseDateLte,
     voteAverageGte,
-    voteAverageLte
-  } = useSelector((state) => state.filter);
+    voteAverageLte,
+  } = useSelector((state) => state.movieFilter);
 
   const [mergedData, setMergeData] = useState([]);
   const [pageNum, setPageNum] = useState(1);
@@ -95,39 +96,12 @@ const Movies = () => {
     [moreMoviesDataLoading, hasMore]
   );
 
-  useEffect( ()=>{
-    dispatch(movieFilterAction.getMovieFilter())
-    }, []);
+  useEffect(() => {
+    dispatch(movieFilterActions.getFilteredMovies());
+  }, []);
 
-    useEffect(() => {
-      getMoreMovies(
-        keyword,
-        sortBy,
-        withGenres,
-        includeVideo,
-        releaseDateGte,
-        releaseDateLte,
-        voteAverageGte,
-        voteAverageLte,
-        pageNum
-      );
-    }, [pageNum]);
-  
-    useEffect(() => {
-      getMoreMovies(
-        keyword,
-        sortBy,
-        withGenres,
-        includeVideo,
-        releaseDateGte,
-        releaseDateLte,
-        voteAverageGte,
-        voteAverageLte,
-        pageNum
-      );
-      setPageNum(1);
-      setMergeData([]);
-    }, [
+  useEffect(() => {
+    getMoreMovies(
       keyword,
       sortBy,
       withGenres,
@@ -136,18 +110,49 @@ const Movies = () => {
       releaseDateLte,
       voteAverageGte,
       voteAverageLte,
-    ]);
+      pageNum
+    );
+  }, [pageNum]);
 
-  return <div>
-    
+  useEffect(() => {
+    getMoreMovies(
+      keyword,
+      sortBy,
+      withGenres,
+      includeVideo,
+      releaseDateGte,
+      releaseDateLte,
+      voteAverageGte,
+      voteAverageLte,
+      pageNum
+    );
+    setPageNum(1);
+    setMergeData([]);
+  }, [
+    keyword,
+    sortBy,
+    withGenres,
+    includeVideo,
+    releaseDateGte,
+    releaseDateLte,
+    voteAverageGte,
+    voteAverageLte,
+  ]);
+
+  return loading ? (
+    <div className="loadingSpinner">
+      <FadeLoader color="red" loading={loading} size={15} speedMultiplier={3} />
+    </div>
+  ) : (
     <div>
-    <input
+      <div className="MoviesPage">
+        <input
           type={"checkbox"}
           id="MoviesHandler_container_checkbox"
           style={{ display: "none" }}
         />
-
-            <div className="MoviesHandler_container">
+        <div className="MoviesHandler">
+          <div className="MoviesHandler_container">
             <MovieFilterInput />
             <MovieFilterSlider
               min={1990}
@@ -161,25 +166,40 @@ const Movies = () => {
               text={"IBM SCORE FILTER"}
               id={"score"}
             />
-            <MovieFilterButton text={"GENRES"} genreList={genreList} />
+            <MovieFilterButton text={"GENRES"} genreListData={genreListData} />
           </div>
+
           <label
             htmlFor="MoviesHandler_container_checkbox"
             className="MoviesHandler_toggleButton"
           >
             <p className="MoviesHandler_toggleButton_text">FILTER</p>
           </label>
-    </div>
+        </div>
 
- <div className="MovieListWrapper">
-  
+        <div className="MovieListWrapper">
+          {moreMoviesDataLoading ? (
+            <div className="loadingSpinner_scrolling">
+              <FadeLoader
+                color="red"
+                loading={loading}
+                size={100}
+                speedMultiplier={3}
+              />
+            </div>
+          ) : (
             <FilteredMovieList
               movies={mergedData}
               innerRef={lastMovieElementRef}
             />
-          
+          )}
+          {!moreMoviesDataLoading && !hasMore ? (
+            <div className="hasNoMore">NO MORE MOVIES</div>
+          ) : null}
         </div>
-  </div>;
+      </div>
+    </div>
+  );
 };
 
 export default Movies;
