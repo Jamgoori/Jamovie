@@ -11,7 +11,7 @@ const getFilteredMovies = (
   voteAverageLte,
   pageNum
 ) => {
-  const API_KEY = process.env.REACT_APP_API_KEY;
+  const API_KEY = "a04d1fe3abf6087ad410b03ed60f8117";
 
   return async (dispatch) => {
     try {
