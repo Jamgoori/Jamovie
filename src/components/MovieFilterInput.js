@@ -101,18 +101,10 @@ const MovieFilterInput = () => {
               label="Sort"
               onChange={handleChange}
             >
-              <MenuItem value={"popularity.desc"}>popularity.desc</MenuItem>
-              <MenuItem value={"original_title.asc"}>
-                original_title.asc
-              </MenuItem>
-              <MenuItem value={"original_title.desc"}>
-                original_title.desc
-              </MenuItem>
-              <MenuItem value={"release_date.asc"}>release_date.asc</MenuItem>
-              <MenuItem value={"release_date.desc"}>release_date.desc</MenuItem>
-
-              <MenuItem value={"vote_average.asc"}>vote_average.asc</MenuItem>
-              <MenuItem value={"vote_average.desc"}>vote_average.desc</MenuItem>
+              <MenuItem value={"popularity.desc"}>인기순</MenuItem>
+              <MenuItem value={"release_date.asc"}>오래된 순</MenuItem>
+              <MenuItem value={"release_date.desc"}>최신순</MenuItem>
+              <MenuItem value={"vote_average.desc"}>평가순</MenuItem>
             </Select>
           </MyFormControl>
         </div>

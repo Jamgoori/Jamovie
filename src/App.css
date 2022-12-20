@@ -28,14 +28,18 @@ body{
 }
 
 .nav_logo {
-  content: url(./images/netflix_lg.png);
   position: relative;
   width: 100px;
   object-fit: contain;
   cursor: pointer;
 }
 
-
+.logo{
+  color: pink;
+}
+.logo:hover{
+  color: rgb(233, 134, 151);
+}
 .nav a {
   font-weight: bold;
   text-decoration: none;
@@ -59,7 +63,6 @@ body{
 
 @media screen and (max-width: 768px) {
   .nav_logo {
-    content: url(./images/netflix_sm.png);
     width: 20px;
   }
 }
@@ -516,6 +519,7 @@ body{
   padding-top: 80px;
   transition: 1s;
   float: left;
+  color: white;
 }
 
 .MoviesHandler_container {
@@ -530,7 +534,7 @@ body{
   z-index: 10;
   width: 60px;
   height: 100vh;
-  background-color: transparent;
+  background-color: #141414;
 
   color: white;
   font-weight: bold;

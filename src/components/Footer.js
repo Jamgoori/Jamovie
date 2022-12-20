@@ -1,6 +1,6 @@
 import React from "react";
 import { GoMarkGithub } from "react-icons/go";
-import velogIcon from "../images/velog_icon.png";
+import tistory from "../images/tistory.png";
 
 const Footer = () => {
   return (
@@ -31,7 +31,7 @@ const Footer = () => {
                   marginBottom: "20px",
                 }}
               >
-                <img src={velogIcon} alt="" width={"25px"} />
+                <img src={tistory} alt="" width={"25px"} />
               </a>
             </span>
           </div>
