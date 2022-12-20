@@ -156,7 +156,7 @@ const Movies = () => {
             <MovieFilterInput />
             <MovieFilterSlider
               min={1990}
-              max={2020}
+              max={2023}
               text={"YEAR FILTER"}
               id={"year"}
             />

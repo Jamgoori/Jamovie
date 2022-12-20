@@ -12,7 +12,7 @@ const FilteredMovieList = ({ movies, innerRef }) => {
   return (
     <>
       {moviesData && (
-        <Container>
+        <Container className="back">
           <Row>
             {moviesData.map((item, index) =>
               moviesData.length === index + 1 ? (

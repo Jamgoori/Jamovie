@@ -8,7 +8,7 @@ function MovieVideoForBanner() {
   );
 
   const opts = {
-    height: "100%",
+    height: "40%",
     width: "100%",
     playerVars: {
       autoplay: 1,

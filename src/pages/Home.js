@@ -1,13 +1,14 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { movieActions } from "../redux/actions/movieActions";
-import MovieSlide from "../components/MovieSlide";
 import { FadeLoader } from "react-spinners";
 import { movieDetailActions } from "../redux/actions/movieDetailActions";
 import api from "../redux/api";
+import MovieSlide from "../components/MovieSlide";
 import MovieVideoForBanner from "../components/MovieVideoForBanner";
 import TextAnimation from "../components/TextAnimation";
 import styled from "styled-components";
+import Footer from "../components/Footer";
 
 const BannerImg = styled.div`
   background-position: 50%;
@@ -21,11 +22,11 @@ const BannerImg = styled.div`
   opacity: 1;
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 100vh;
 
   &:before {
     position: absolute;
-    z-index: 15;
+    z-index: 1;
     content: "";
     min-height: 600px;
     height: 71.25vw;
@@ -124,24 +125,24 @@ const Home = () => {
         </BannerImg>
       </div>
 
+            <div className="backSide">    
       <h1>
         <span className="subTitle">&#10095;</span>
         <span>POPULAR MOVIES</span>
-        {/* <span className="divide_line"></span> */}
       </h1>
       <MovieSlide movies={popularMoviesData.results} />
       <h1>
         <span className="subTitle">&#10095;</span>
         <span>TOP RATED MOVIES</span>
-        {/* <span className="divide_line"></span> */}
       </h1>
       <MovieSlide movies={topRatedMoviesData.results} />
       <h1>
         <span className="subTitle">&#10095;</span>
         <span>UPCOMING MOVIES</span>
-        {/* <span className="divide_line"></span> */}
       </h1>
       <MovieSlide movies={upcomingMoviesData.results} />
+      </div>
+      <Footer/>
     </div>
   );
 };

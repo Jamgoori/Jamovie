@@ -14,6 +14,7 @@ import Col from "react-bootstrap/esm/Col";
 import styled from "styled-components";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
+import Footer from "../components/Footer";
 
 const BannerImg = styled.div`
   background-position: 50%;
@@ -356,6 +357,7 @@ const MovieDetail = () => {
           )}
         </div>
       </div>
+      <Footer/>
     </>
   );
 };

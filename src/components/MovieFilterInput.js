@@ -101,7 +101,6 @@ const MovieFilterInput = () => {
               label="Sort"
               onChange={handleChange}
             >
-              <MenuItem value={"popularity.asc"}>popularity.asc</MenuItem>
               <MenuItem value={"popularity.desc"}>popularity.desc</MenuItem>
               <MenuItem value={"original_title.asc"}>
                 original_title.asc
