@@ -42,7 +42,7 @@ const Movies = () => {
   ) => {
     dispatch({ type: "GET_MORE_MOVIES_REQUEST" });
 
-    const API_KEY = process.env.REACT_APP_API_KEY;
+    const API_KEY = "a04d1fe3abf6087ad410b03ed60f8117";
 
     const loadMoreMovies = await api.get(
       `/discover/movie?api_key=${API_KEY}&language=en-US&page=1&region=US${

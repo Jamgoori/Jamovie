@@ -5,7 +5,6 @@ import Navbar from "./components/Navbar";
 import Movies from './pages/Movies';
 import {Routes, Route} from "react-router-dom"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Footer from './components/Footer';
 
 function App() {
   return (

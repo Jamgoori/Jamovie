@@ -58,7 +58,7 @@ const Home = () => {
   const { MovieDetailData } = useSelector((state) => state.movieDetail);
 
   const getMovieKeyForBanner = async () => {
-    const API_KEY = process.env.REACT_APP_API_KEY;
+    const API_KEY = "a04d1fe3abf6087ad410b03ed60f8117";
     const movie_id =
       popularMoviesData.results && popularMoviesData.results[0].id;
 
