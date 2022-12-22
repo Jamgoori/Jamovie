@@ -1,70 +1,112 @@
-# Getting Started with Create React App
+# 잼무비
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 1. 프로젝트 명: 잼무비
 
-## Available Scripts
+> **🔗 배포 URL:** [https://jamovie.netlify.app/](https://jamovie.netlify.app/)
 
-In the project directory, you can run:
+```jsx
+🟥  인기, 높은 평점, 개봉 예정 영화를 볼 수 있습니다.
 
-### `npm start`
+🟨  영화 상세페이지에서 줄거리, 평점, 장르, 상영시간, 리뷰, 비슷한 영화, 추천 영화를 소개합니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+🟩  필터를 통해 원하는 영화를 검색할 수 있습니다.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+🟦  영화명, 연도별, 평점, 장르별로 검색할 수 있습니다.
+```
 
-### `npm test`
+## 2. 개발 환경
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### ⚙️   사용기술 
+<img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
 
-### `npm run build`
+### 배포
+<img src="https://img.shields.io/badge/-netflify-blue">
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 3. 핵심기능 시연
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+| 홈화면                                                 | 회원가입                                                             |
+| ------------------------------------------------------ | -------------------------------------------------------------------- |
+| ![홈화면](/ReadmeGif/홈화면.gif)                       | ![캐러셀](/ReadmeGif/캐러셀.gif) |
+| 영화요약                                               | 영화디테일                                                          |
+| ![영화요약](/ReadmeGif/영화요약.gif)                   | ![영화 디테일](/ReadmeGif/영화디테일.gif)                        |
+| 영화리뷰                                               | 필터링                                                             |
+| ![영화리뷰](/ReadmeGif/영화리뷰.gif)                    | ![필터링](/ReadmeGif/필터링.gif)                    |
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## 4. 주요코드
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 4.1 **API**
+<hr>
+fetch보다 더 많은 기능을 제공하는 Axios를 활용하였습니다.
+<br>
+디버깅하기 원할하게 interceptor를 사용하였습니다.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```jsx
+import axios from "axios";
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+const api = axios.create({
+  baseURL: "https://api.themoviedb.org/3/",
+  headers: { "Content-type": "application/json" },
+});
 
-## Learn More
+api.interceptors.request.use(
+  function (config) {
+    return config;
+  },
+  function (error) {
+    return Promise.reject(error);
+  }
+);
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+api.interceptors.response.use(
+  function (response) {
+    return response;
+  },
+  function (error) {
+    return Promise.reject(error);
+  }
+);
+```
+### 4.2 **Redux**
+<hr>
+상태관리를 위해서 Redux를 활용하였습니다.
+<br>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+### 4.3 **최적화**
+<hr>
+최적화를 위해서 useRef와 useCallback을 사용하였습니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```jsx
+  useEffect(() => {
+    if (isMounted.current) {
+      getMovieKeyForBanner();
+    } else {
+      isMounted.current = true;
+    }
+  }, [popularMoviesData.results]);
+```
 
-### Analyzing the Bundle Size
+```jsx
+const lastMovieElementRef = useCallback(
+    (node) => {
+      if (moreMoviesDataLoading) {
+        return;
+      }
+      if (observer.current) {
+        observer.current.disconnect();
+      }
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          setPageNum((prevPageNum) => prevPageNum + 1);
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [moreMoviesDataLoading, hasMore]
+  );
+  ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
