@@ -322,6 +322,7 @@ body{
   border-radius: 10px;
   transform-origin: bottom;
   transition: 0.3s;
+  color: white;
 }
 
 @media screen and (max-width: 768px) {
