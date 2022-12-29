@@ -144,8 +144,8 @@ const Movies = () => {
       <FadeLoader color="red" loading={loading} size={15} speedMultiplier={3} />
     </div>
   ) : (
-    <div>
-      <div className="MoviesPage">
+    <main>
+      <form className="MoviesPage">
         <input
           type={"checkbox"}
           id="MoviesHandler_container_checkbox"
@@ -197,8 +197,8 @@ const Movies = () => {
             <div className="hasNoMore">NO MORE MOVIES</div>
           ) : null}
         </div>
-      </div>
-    </div>
+      </form>
+    </main>
   );
 };
 

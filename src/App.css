@@ -1,7 +1,4 @@
 /* ------------------------nav------------------------ */
-body{
-  background-color: red;
-}
 .nav {
   position: fixed;
   z-index: 10000;

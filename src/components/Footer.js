@@ -5,9 +5,9 @@ import tistory from "../images/tistory.png";
 const Footer = () => {
   return (
     <>
-      <div className="footer">
+      <footer className="footer">
         <ul className="footer_structural">
-          <div style={{ marginBottom: "20px" }}>
+          <address style={{ marginBottom: "20px" }}>
             <span style={{ marginRight: "15px" }}>
               <a
                 href="https://github.com/Jamgoori"
@@ -34,7 +34,7 @@ const Footer = () => {
                 <img src={tistory} alt="" width={"25px"} />
               </a>
             </span>
-          </div>
+          </address>
 
           <div style={{ marginBottom: "20px" }}>
             <li className="footer_link_item">
@@ -81,14 +81,14 @@ const Footer = () => {
             </li>
           </div>
 
-          <div className="footer_info">
+          <address className="footer_info">
             <div style={{ marginBottom: "15px" }}>
               Email: lks2354@naver.com
             </div>
             <div>This site is for personal projects</div>
-          </div>
+          </address>
         </ul>
-      </div>
+      </footer>
     </>
   );
 };

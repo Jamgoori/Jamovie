@@ -110,7 +110,7 @@ const Home = () => {
       <FadeLoader color="red" loading={loading} size={15} speedMultiplier={3} />
     </div>
   ) : (
-    <div className="home">
+    <main className="home">
       <div className="banner_container">
         <div className="banner_container_text">
           <TextAnimation movie={MovieDetailData} />
@@ -143,7 +143,7 @@ const Home = () => {
       <MovieSlide movies={upcomingMoviesData.results} />
       </div>
       <Footer/>
-    </div>
+    </main>
   );
 };
 

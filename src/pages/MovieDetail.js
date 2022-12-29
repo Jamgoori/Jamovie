@@ -112,26 +112,26 @@ const MovieDetail = () => {
     </div>
   ) : (
     <>
-      <div className="MovieDetail_container">
-        <div className="MovieDetail_container_text">
+      <header className="MovieDetail_container">
+        <h5 className="MovieDetail_container_text">
           <TextAnimation movie={MovieDetailData} />
-        </div>
+        </h5>
         {}
-        <BannerImg MovieDetailData={MovieDetailData}>
+        <BannerImg MovieDetailData={MovieDetailData} alt="trailer">
           <div className="MovieDetail_video">
             {bannerChange ? <MovieVideoForBanner /> : null}
           </div>
         </BannerImg>
-      </div>
+      </header>
 
-      <div className="MovieDetail_section">
+      <main className="MovieDetail_section">
         <h1>
           <span className="subTitle">&#10095;</span>
           <span>OVERVIEW</span>
           <span className="divide_line"></span>
         </h1>
 
-        <div className="MovieDetail_section_overview">
+        <section className="MovieDetail_section_overview">
           <div className="MovieDetail_section_overview_item_left">
             {MovieDetailData.overview}
           </div>
@@ -186,7 +186,7 @@ const MovieDetail = () => {
               </span>
             </div>
           </div>
-        </div>
+        </section>
 
         <h1>
           <span className="subTitle">&#10095;</span>
@@ -194,7 +194,7 @@ const MovieDetail = () => {
           <span className="divide_line"></span>
         </h1>
 
-        <div className="MovieDetail_section_credits">
+        <article className="MovieDetail_section_credits">
           <Swiper
             className="swiper_for_credits"
             slidesPerView={6}
@@ -272,7 +272,7 @@ const MovieDetail = () => {
               </SwiperSlide>
             ))}
           </Swiper>
-        </div>
+        </article>
 
         <h1>
           <span className="subTitle">&#10095;</span>
@@ -324,16 +324,16 @@ const MovieDetail = () => {
           )}
         </Row>
 
-        <div>
+        <article>
           <h1>
             <span className="subTitle">&#10095;</span>
             <span>SIMILAR MOVIES</span>
             <span className="divide_line"></span>
           </h1>
           <MovieSlide movies={SimilarMovies.data.results} />
-        </div>
+        </article>
 
-        <div>
+        <article>
           <h1>
             <span className="subTitle">&#10095;</span>
             <span>RECOMMEND MOVIES</span>
@@ -355,9 +355,9 @@ const MovieDetail = () => {
               Sorry, No movie recommendations
             </h3>
           )}
-        </div>
-      </div>
-      <Footer/>
+        </article>
+      </main>
+      <Footer />
     </>
   );
 };
